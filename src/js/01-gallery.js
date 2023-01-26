@@ -28,14 +28,8 @@ const imageItemsMarkup = addGallery(galleryItems);
 
 galleryRef.insertAdjacentHTML('beforeend', imageItemsMarkup);
 
-// let lightbox = new SimpleLightbox('.gallery a', {
-//   captionsData: 'alt',
-//   captionsDelay: 250,
-//   scrollZoom: false,
-// });
-
-// const x = {
-//   captionsData: 'alt',
-//   captionsDelay: 250,
-//   scrollZoom: false,
-// };
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionsDelay: 250,
+  scrollZoom: false,
+});
