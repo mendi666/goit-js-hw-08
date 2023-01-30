@@ -9,25 +9,33 @@ const formData = {}
 formRef.addEventListener('submit', throttle(onFormSubmit, 500))
 formRef.addEventListener('input', e =>{
     formData[e.target.name] = e.target.value
-    console.log(formData)
     localStorage.setItem('feedback-form-state', JSON.stringify(formData))
 })
 
+const savedData = localStorage.getItem('feedback-form-state')
 const parsedData = JSON.parse(localStorage.getItem('feedback-form-state'))
 
-console.log(parsedData)
+// console.log(parsedData)
 
 function inputAdd () {
     if (parsedData != null) {
         inputRef.value = parsedData.email
         textareaRef.value = parsedData.message}
+     
 }
 
 inputAdd()
 
 function onFormSubmit(e) {
-e.preventDefault();
-e.currentTarget.reset()
-localStorage.clear()
-}
+    e.preventDefault();
+    if (!e.target.email.value || !e.target.message.value) {
+      alert('Enter all data');
+    
+    } else {
+        e.currentTarget.reset()
+        localStorage.clear()
+        console.log(formData)
+    }}
+
+    console.log("test")
 
