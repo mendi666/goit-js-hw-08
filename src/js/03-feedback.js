@@ -31,7 +31,7 @@ inputAdd()
 
 function onFormSubmit(e) {
     e.preventDefault();
-    console.log(formData)
+    console.log('test')
     if (!e.target.email.value || !e.target.message.value) {
       alert('Enter all data');
     
@@ -41,5 +41,5 @@ function onFormSubmit(e) {
         
     }}
 
-    console.log("jwefewf")
+ 
 
