@@ -8,30 +8,41 @@ const formData = {}
 
 formRef.addEventListener('submit', throttle(onFormSubmit, 500))
 formRef.addEventListener('input', e =>{
-    formData[e.target.name] = e.target.value
-    localStorage.setItem('feedback-form-state', JSON.stringify(formData))
+    const existData = localStorage.getItem('feedback-form-state') ? JSON.parse(localStorage.getItem('feedback-form-state')) : null
+    if(existData !== null) {
+        console.log(existData)
+        
+        if( `${formData[e.target.name]}` in existData){
+            existData[e.target.name] = e.target.value
+            localStorage.setItem('feedback-form-state', JSON.stringify(existData))
+            console.log(existData)
+        } else {
+            formData[e.target.name] = e.target.value
+            localStorage.setItem('feedback-form-state', JSON.stringify(formData))
+            console.log(formData)
+        }
+    } else {
+        formData[e.target.name] = e.target.value
+            localStorage.setItem('feedback-form-state', JSON.stringify(formData)) 
+    }
 })
 
-const savedData = localStorage.getItem('feedback-form-state')
-const parsedData = JSON.parse(localStorage.getItem('feedback-form-state'))
-
-console.log(parsedData)
 
 function inputAdd () {
-    if (parsedData != null) {
-        inputRef.value = parsedData.email
-        textareaRef.value = parsedData.message} else {
-            inputRef.value = ""
-            textareaRef.value = ""
-        }
-     
+    const parsedData = localStorage.getItem('feedback-form-state') ? JSON.parse(localStorage.getItem('feedback-form-state')) : null
+    if (parsedData !== null ) {
+        inputRef.value = parsedData.email ? parsedData.email : ""
+        textareaRef.value = parsedData.message ? parsedData.message: "" } 
+        console.log(parsedData)
 }
+
 
 inputAdd()
 
+
 function onFormSubmit(e) {
     e.preventDefault();
-    console.log('test')
+    console.log(FormData)
     if (!e.target.email.value || !e.target.message.value) {
       alert('Enter all data');
     
@@ -41,7 +52,9 @@ function onFormSubmit(e) {
         
     }}
 
-    console.log(wdqwd)
+
+    console.log('test')
+
 
  
 
