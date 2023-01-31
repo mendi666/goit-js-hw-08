@@ -15,12 +15,15 @@ formRef.addEventListener('input', e =>{
 const savedData = localStorage.getItem('feedback-form-state')
 const parsedData = JSON.parse(localStorage.getItem('feedback-form-state'))
 
-// console.log(parsedData)
+console.log(parsedData)
 
 function inputAdd () {
     if (parsedData != null) {
         inputRef.value = parsedData.email
-        textareaRef.value = parsedData.message}
+        textareaRef.value = parsedData.message} else {
+            inputRef.value = ""
+            textareaRef.value = ""
+        }
      
 }
 
@@ -28,14 +31,15 @@ inputAdd()
 
 function onFormSubmit(e) {
     e.preventDefault();
+    console.log(formData)
     if (!e.target.email.value || !e.target.message.value) {
       alert('Enter all data');
     
     } else {
         e.currentTarget.reset()
         localStorage.clear()
-        console.log(formData)
+        
     }}
 
-    console.log("test")
+    console.log("jwefewf")
 
